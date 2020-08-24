@@ -41,13 +41,13 @@ export default function Counter() {
   const[count,setCount]= useState(0)
 
   const increment = () => {
-    return setCount(count + 1)
+    setCount(count + 1)
   };
   const decrement = () => {
-    return setCount(count - 1)
+    setCount(count - 1)
   };
   const reset = () => {
-    return setCount(0)
+    setCount(0)
   };
 
   const style = {

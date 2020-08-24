@@ -1,16 +1,12 @@
 /*
 SQUARES Instructions
-
 Watch this short video:
 https://tk-assets.lambdaschool.com/0aebd463-7c5e-4d0b-ad22-4da8f4b54e92_squares.gif
-
 This component keeps track of a list of "square ids" on the one hand,
 and the currently active id on the other. That's two slices of state!
 One is used as the source of truth to render the squares, and the other
 so that the component knows which square is currently active.
-
 Only one square (or none) can be active at any given point.
-
 Find comments below to help you along.
 */
 
@@ -23,26 +19,26 @@ export default function Squares() {
   // Use the state hook twice, as we need two slices of state: 'squares' and
   // 'activeSquare'. One holds the _array_ of square ids, and the other keeps track
   // of the currently active square (if any).
-
-  const [squares, setSquares] = useState(listOfSquareIds);
-  const [activeSquare, setActiveSquare] = useState();
+  const [squares, setSquares] = useState(listOfSquareIds)
+  const [activeSquare, setActiveSquare] = useState()
 
   const isActive = id => {
-    // This is NOT a click handler but a helper, used inside the JSX (see below).
-    // It should return a string containing the class name of 'active', if the id passed
-    // as the argument matches the active square in state, empty string otherwise.
+    // This is not a click handler but a helper, used inside the JSX, (See below)
+    // and should return a class name of active if the id passed
+    // matches the active square in state, empty string otherwise.
     // Right-click and "inspect element" on the square to see its effect.
-    return ''
+    return activeSquare === id ? "active" : ""
+
   };
 
   const markActive = id => {
-    // This is a helper used inside an _inlined_ click handler (see below).
-    // Set the id argument to become the active id in state
+    // This is a helper used inside an _inlined_ click handler. (See below)
+    // Set the id argument to be the active id in state
     // (unless it already is, in which case we should reset
     // the currently active square id back to initial state).
-    return activeSquare === id ? "active" : ""
+    (activeSquare === id)? setActiveSquare(null) : setActiveSquare(id)
   };
-
+  
   return (
     <div className='widget-squares container'>
       <h2>Squares</h2>
@@ -55,7 +51,7 @@ export default function Squares() {
             <div
               id={id}
               key={id}
-              className={`square${isActive(id)}`}
+              className={`square ${isActive(id)}`}
               onClick={() => markActive(id)}
             >
             </div>
